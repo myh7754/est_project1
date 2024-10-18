@@ -1,0 +1,61 @@
+모든 것 url을 통해
+url의 파라미터에 따라 오류발생, 중복된 값이 입력된 경우 마지막 값 입력
+
+// 모든것은 로그인 여부에 따라 확인
+// 관리자 권한
+board 기능 전부
+post 기능 전부
+account 기능 전부
+
+// 일반 회원 권한
+board의 목록 기능
+post 기능 전부
+account 기능 (회원가입, 로그인, 로그아웃)  // 후순위 아이디찾기, 비밀번호 변경
+
+// 비회원 권한
+board의 목록 기능
+account의 회원가입 로그아웃 로그인
+post 목록 기능
+
+관리자는 모든 권한 가능
+
+board {
+    권한 :
+    게시판 생성 : add , parameter : -
+    권한 :
+    게시판 수정 : edit, parameter : boardId
+    권한 :
+    게시판 삭제 : remove, parameter : boardId
+    권한 : 일반회원, 비회원
+    게시판 조회 : view, parameter : boardName
+}
+
+post {
+    권한 : 일반회원,
+    게시글 생성 : add , parameter : boardId
+    권한 : 일반회원,
+    게시글 수정 : edit, parameter : postId
+    권한 : 일반회원(회원이 쓴글만),
+    게시글 삭제 : remove, parameter : postId
+    권한 : 일반회원, 비회원
+    게시글 조회 : view , parameter : postId
+
+}
+
+account {
+    권한 : 일반회원,비회원
+    회원가입 : signup , parameter : -
+    권한 : 일반회원,비회원
+    로그인 : signin , parameter : -
+    권한 : 일반회원,비회원
+    로그아웃 : signout , parameter : -
+
+    권한 : 일반회원(회원 본인의 정보만)
+    회원정보 수정 : edit, parameter : accountId
+    권한 : 일반회원(회원 본인의 정보만)
+    회원정보 삭제 : remove, parameter : accountId
+
+
+    권한 : 일반회원(회원 본인의 정보만)
+    회원정보 조회 : detail, parameter : accountId
+}
