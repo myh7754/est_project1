@@ -21,17 +21,13 @@ public class PostMethod {
         postRepository.save(post);
     }
 
-    public void remove() {
+    public void remove(Long postId) {
         System.out.println("Post.remove를 호출합니다.");
-        System.out.print("삭제할 post 번호 : ");
-        Long postId = Long.parseLong(scanner.nextLine());
         postRepository.posts.remove(postId);
 
     }
-    public void edit() {
+    public void edit(Long postId) {
         System.out.println("Post.edit를 호출합니다.");
-        System.out.print("수정할 post 번호 : ");
-        long postId = Long.parseLong(scanner.nextLine());
         System.out.print("수정할 post 제목 : ");
         postTitle = scanner.nextLine();
         System.out.print("수정할 post 내용 : ");
@@ -41,10 +37,8 @@ public class PostMethod {
         postRepository.posts.get(postId).setContent(postContent);
 
     }
-    public void view() {
+    public void view(Long postId) {
         System.out.println("Post.view를 호출합니다.");
-        System.out.print("어떤 게시물을 조회하겠습니까? : ");
-        long postId = Long.parseLong(scanner.nextLine());
         System.out.println(postId + "번 게시글");
         System.out.println(postRepository.posts.get(postId).getTitle());
         System.out.println(postRepository.posts.get(postId).getContent());

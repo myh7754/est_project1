@@ -59,3 +59,6 @@ account {
     권한 : 일반회원(회원 본인의 정보만)
     회원정보 조회 : detail, parameter : accountId
 }
+
+
+
