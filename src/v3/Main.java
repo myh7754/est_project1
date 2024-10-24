@@ -18,32 +18,23 @@ public class Main {
         AccountRepository accountRepository = new AccountRepository();
 
         Session session = new Session();
-
+        String url;
         BoardService boardService = new BoardService(boardRepository, postRepository,session);
         PostService postService = new PostService(postRepository,session);
         AccountService accountService = new AccountService(accountRepository,session);
 
 
 
-        Request request = new Request();
-
-        String url;
-        String category;
-        String method;
-
         while (true) {
             try {
                 String login = session.getLoginUser(); // admin, member, guest
                 System.out.print(login + "> ");
                 url = sc.nextLine();
-                request.urlParse(url);
-                category = request.getCategory();
-                method = request.getAction();
-                System.out.println(category + " " + method);
+                Request request = new Request(url,session);
                 Long accountId = session.getAccountId();
-                switch (category) {
+                switch (request.getCategory()) {
                     case "boards" -> {
-                        switch (method) {
+                        switch (request.getAction()) {
                             case "add":
                                 boardService.add();
                                 break;
@@ -72,7 +63,7 @@ public class Main {
                         }
                     }
                     case "posts" -> {
-                        switch (method) {
+                        switch (request.getAction()) {
                             case "add":
                                 //display
                                 System.out.print("게시판 선택 변호 :");
@@ -101,7 +92,7 @@ public class Main {
                         }
                     }
                     case "accounts" -> {
-                        switch (method) {
+                        switch (request.getAction()) {
                             case "signup":
                                 accountService.singup();
                                 break;
