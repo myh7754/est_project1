@@ -24,12 +24,26 @@ java를 이용해 사용자로 부터 url을 입력 받아 게시물의 기능�
 accounts/signup/아이디 중복검사
 boards/remove/ 게시판 삭제시 해당 게시판에 적혀있는 posts 글들도 모두 삭제
 boards/list/ 생성되어 있는 모든 게시판 출력, 게시판에 작성된 글 수 표시
-## 세부사항  
-단계  
-어떤 문제를 어떻게 풀었는지 소개 (단계별 요구사항에 대한 해결내용)  
-## 트러블 슈팅(적어도 2개)  
-1. 문제를 직면
-2. 그에 대한 고민
-3. 해결방안 모색
-4. 해결
-5. 그에 대한 감상? 후기?
+
+## 트러블 슈팅(1)  
+1. repository에 객체를 저장하는데 Service안에서 생성하다 보니 저장이 되지 않는 문제가 발생
+2. 하나의 인스턴스에서 생성된 repository가 아니라 여러 곳에서 생성해서 사용하려 해서 문제가 발생한 것 
+3. 싱글톤 패턴이 이용하여 해결하는 방법을 찾아 싱글톤 패턴이 필요한 이유를 듣는게 아니라 직접 알게되었습니다.
+4. main 객체에서 한번만 생성해야하는 객체 예를들어 Repository와 같은 저장소를 하나만 생성하여 객체에 주입하여 하나의 인스턴스를 사용할 수 있도록 변경
+5. 싱글톤 패턴이 필요한 이유를 먼저 깨닫고 container 객체를 만들어서 주입하여 사용하여서 그에 대한 이해가 어렵지 않았던 것 같다. 만약 내가 처음부터 이러한 방법을 인지해서 사용했다면 어떻게 객체를 가져와야서 사용해야하지에 대한 고민을 덜어 더욱 빠르게 개발할 수 있었을 것 같다.
+
+## 트러블 슈팅(2)
+1. Response에서 Filter기능을 구현하는데 if문 조건이 너무 복잡하게 만들어 항상 true가 발생
+2.    if ((category.equals("accounts") && (action.equals("signup") || action.equals("signin"))) ||(category.equals("boards") || category.equals("posts")) && (action.equals("view") || action.equals("list"))) {
+            return true;
+        }
+위 조건식에서 항상 true가 발생한걸 발견한 후 Short-Circuit 때문에 앞 조건이 참이면 뒤에 조건을 무시하고 항상 true가 발생되는 것을 발견
+3. 해당 if문을 나눠 Short-circuit이 발생하지 않도록 각각의 조건으로 나눔
+4.       if (category.equals("accounts") && (action.equals("signup") || action.equals("signin"))) {
+            return true;
+        }
+        if((category.equals("boards") || category.equals("posts")) && (action.equals("view") || action.equals("list"))) {
+            return true;
+        }
+다움과 같이 if문을 끊어서 각각의 조건에 따라 true가 발생되도록 변경
+5. if문의 복잡한 조건을 사용할 때는 항상 조심해서 끊어서 사용해야 하는 것을 느끼게 되었습니다.
