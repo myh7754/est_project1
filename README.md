@@ -3,10 +3,15 @@
 java를 이용해 사용자로 부터 url을 입력 받아 게시물의 기능을 실행하는 게시판 프로젝트
 ---
 명령어에 따른 동작
-| Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|
-| Row 1    | Data 1   | Data 2   |
-| Row 2    | Data 3   | Data 4   |
+|  |url | 기능 |권한|
+|----------|----------|----------|----------|
+|accounts  |/accounts/signup   | 회원가입  | 익명 |
+|accounts  |/accounts/signin   | 로그인   | 익명 |
+|accounts  |/accounts/signout  | 로그아웃  | 회원  |
+| accounts | /accounts/detail  | 로그인된 회원조회  | 회원 |
+
+
+accounts/signup/아이디 중복검사
 ## 세부사항  
 단계  
 어떤 문제를 어떻게 풀었는지 소개 (단계별 요구사항에 대한 해결내용)  
