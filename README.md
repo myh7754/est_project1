@@ -39,11 +39,13 @@ boards/list/ 생성되어 있는 모든 게시판 출력, 게시판에 작성된
         }
 위 조건식에서 항상 true가 발생한걸 발견한 후 Short-Circuit 때문에 앞 조건이 참이면 뒤에 조건을 무시하고 항상 true가 발생되는 것을 발견
 3. 해당 if문을 나눠 Short-circuit이 발생하지 않도록 각각의 조건으로 나눔
-4.       if (category.equals("accounts") && (action.equals("signup") || action.equals("signin"))) {
+4. ```
+   if (category.equals("accounts") && (action.equals("signup") || action.equals("signin"))) {
             return true;
         }
         if((category.equals("boards") || category.equals("posts")) && (action.equals("view") || action.equals("list"))) {
             return true;
         }
+   
 다움과 같이 if문을 끊어서 각각의 조건에 따라 true가 발생되도록 변경
 5. if문의 복잡한 조건을 사용할 때는 항상 조심해서 끊어서 사용해야 하는 것을 느끼게 되었습니다.
