@@ -1,4 +1,4 @@
-package v3.account;
+package v3.view;
 
 public class AccountView {
 }

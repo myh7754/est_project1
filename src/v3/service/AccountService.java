@@ -1,4 +1,8 @@
-package v3.account;
+package v3.service;
+
+import v3.model.Session;
+import v3.model.Account;
+import v3.repository.AccountRepository;
 
 import java.util.Scanner;
 
@@ -7,7 +11,7 @@ public class AccountService {
     private Session loginSession;
     Scanner scanner = new Scanner(System.in);
 
-    public AccountService(AccountRepository accountRepository,Session loginSession) {
+    public AccountService(AccountRepository accountRepository, Session loginSession) {
         this.accountRepository = accountRepository;
         this.loginSession = loginSession;
     }

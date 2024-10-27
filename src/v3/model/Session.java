@@ -1,4 +1,4 @@
-package v3.account;
+package v3.model;
 
 public class Session {
     private boolean loginState;
@@ -29,7 +29,7 @@ public class Session {
         this.loginState = loginState;
         this.loginUser = "guest";
     }
-    public void setLoginState(boolean loginState,Account account) {
+    public void setLoginState(boolean loginState, Account account) {
         if (loginState) {
             this.loginState = true;
             if(account.getGrade().equals("member")) {

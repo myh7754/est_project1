@@ -1,9 +1,7 @@
-package v3.post;
+package v3.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class Post {
     private final Long postId;

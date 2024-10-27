@@ -1,4 +1,4 @@
-package v3.post;
+package v3.view;
 
 public class PostView {
 }

@@ -1,10 +1,14 @@
-package v3.board;
-import java.util.Collection;
+package v3.repository;
+import v3.model.Board;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class BoardRepository {
-    public Map<Long, Board> boards = new HashMap<>();
+    public Map<Long, Board> boards;
+    public BoardRepository() {
+        this.boards = new HashMap<>();
+    }
 
     public void save(Board board) {
         this.boards.put(board.getBoardId(), board);

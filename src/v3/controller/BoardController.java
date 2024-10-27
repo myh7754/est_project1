@@ -1,4 +1,4 @@
-package v3.board;
+package v3.controller;
 
 public class BoardController {
 }

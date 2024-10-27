@@ -1,12 +1,13 @@
 package v3;
 
-import v3.account.AccountRepository;
-import v3.account.AccountService;
-import v3.account.Session;
-import v3.board.BoardRepository;
-import v3.board.BoardService;
-import v3.post.PostRepository;
-import v3.post.PostService;
+import v3.model.Request;
+import v3.model.Session;
+import v3.repository.AccountRepository;
+import v3.service.AccountService;
+import v3.repository.BoardRepository;
+import v3.service.BoardService;
+import v3.repository.PostRepository;
+import v3.service.PostService;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package v3.account;
+package v3.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

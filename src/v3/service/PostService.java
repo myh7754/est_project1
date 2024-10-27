@@ -1,6 +1,8 @@
-package v3.post;
+package v3.service;
 
-import v3.account.Session;
+import v3.model.Session;
+import v3.model.Post;
+import v3.repository.PostRepository;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;

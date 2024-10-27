@@ -1,8 +1,5 @@
-package v3;
+package v3.model;
 
-import v3.account.Session;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,12 +11,11 @@ public class Request {
     private String query; // query
     private String category; // boars/posts/accounts
     private String action; // method
-    private final Map<String , String> param = new HashMap<>();
+    private final Map<String , String> param ;
 //    private String fragment; 프래그먼트 나중에 구현가능
     private final Session session;
     private String role;
     private boolean author;
-
 
 
     public Session getSession() {
@@ -50,6 +46,7 @@ public class Request {
     public Request(String url, Session session) throws Exception {
         this.url = url;
         this.session = session;
+        this.param = new HashMap<>();
         urlParse(url);
     }
 

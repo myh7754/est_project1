@@ -1,13 +1,12 @@
-package v3.board;
+package v3.model;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 public class Board {
     private String boardName;
     private final Long boardId;
     private static Long boardIdCounter = 0L;
-
+    public Map<Long, Post> posts;
 
     public void setBoardName(String boardName) {
         this.boardName = boardName;

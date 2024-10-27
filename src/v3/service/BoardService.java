@@ -1,8 +1,10 @@
-package v3.board;
+package v3.service;
 
-import v3.account.Session;
-import v3.post.Post;
-import v3.post.PostRepository;
+import v3.model.Session;
+import v3.model.Board;
+import v3.model.Post;
+import v3.repository.BoardRepository;
+import v3.repository.PostRepository;
 
 import java.util.Scanner;
 

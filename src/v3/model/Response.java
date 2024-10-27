@@ -1,11 +1,10 @@
-package v3;
+package v3.model;
 
-import v3.account.AccountService;
-import v3.account.Session;
-import v3.board.BoardService;
-import v3.post.PostService;
+import v3.service.AccountService;
+import v3.repository.BoardRepository;
+import v3.service.BoardService;
+import v3.service.PostService;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class Response {
@@ -17,19 +16,23 @@ public class Response {
     private BoardService boardService;
     private PostService postService;
     private AccountService accountService;
+
+    private BoardRepository boardRepository;
     Scanner sc = new Scanner(System.in);
     private boolean author;
 //    private Map<String , String> param;
 
 
-    public Response(Request req, BoardService boardService, PostService postService, AccountService accountService) {
+    public Response(Request req, BoardService boardService, PostService postService, AccountService accountService, BoardRepository boardRepository) {
        this.category = req.getCategory();
        this.action = req.getAction();
-       this.session = req.getSession();
 
+
+       this.session = req.getSession();
        this.boardService = boardService;
        this.postService = postService;
        this.accountService = accountService;
+       this.boardRepository = boardRepository;
 
        role = session.getLoginUser();
        this.author = filter(role);
@@ -41,7 +44,6 @@ public class Response {
         if (category.equals("accounts") && (action.equals("signup") || action.equals("signin"))) {
             return true;
         }
-
         if((category.equals("boards") || category.equals("posts")) && (action.equals("view") || action.equals("list"))) {
             return true;
         }
@@ -109,7 +111,11 @@ public class Response {
                             //display
                             System.out.print("게시판 선택 변호 :");
                             long boardId = Long.parseLong(sc.nextLine());
-                            postService.add(boardId);
+                            if(boardRepository.boards.get(boardId) == null) { // 오류발생
+                                System.out.println("생성된 게시판이 없습니다.");
+                            } else {
+                                postService.add(boardId);
+                            }
                         }
                         case "edit"-> {
                             System.out.print("수정할 post 번호 : ");
