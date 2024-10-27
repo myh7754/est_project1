@@ -21,9 +21,10 @@ java를 이용해 사용자로 부터 url을 입력 받아 게시물의 기능�
 | posts | /posts/edit  | 게시글 수정  | 회원 |
 | posts | /posts/view  | 게시글 조회  | 익명 |
 
-accounts/signup/아이디 중복검사
-boards/remove/ 게시판 삭제시 해당 게시판에 적혀있는 posts 글들도 모두 삭제
-boards/list/ 생성되어 있는 모든 게시판 출력, 게시판에 작성된 글 수 표시
+accounts/signup/아이디 중복검사  
+boards/remove/ 게시판 삭제시 해당 게시판에 적혀있는 posts 글들도 모두 삭제  
+boards/list/ 생성되어 있는 모든 게시판 출력, 게시판에 작성된 글 수 표시  
+
 
 ## 트러블 슈팅(1)  
 1. repository에 객체를 저장하는데 Service안에서 생성하다 보니 저장이 되지 않는 문제가 발생
@@ -46,6 +47,6 @@ boards/list/ 생성되어 있는 모든 게시판 출력, 게시판에 작성된
         if((category.equals("boards") || category.equals("posts")) && (action.equals("view") || action.equals("list"))) {
             return true;
         }
-   
-다움과 같이 if문을 끊어서 각각의 조건에 따라 true가 발생되도록 변경
+   ```
+   다음과 같이 if문을 끊어서 각각의 조건에 따라 true가 발생되도록 변경
 5. if문의 복잡한 조건을 사용할 때는 항상 조심해서 끊어서 사용해야 하는 것을 느끼게 되었습니다.
