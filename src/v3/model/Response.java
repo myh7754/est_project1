@@ -23,7 +23,7 @@ public class Response {
 //    private Map<String , String> param;
 
 
-    public Response(Request req, BoardService boardService, PostService postService, AccountService accountService, BoardRepository boardRepository) {
+    public Response(Request req, BoardService boardService, PostService postService, AccountService accountService, BoardRepository boardRepository) throws Exception {
        this.category = req.getCategory();
        this.action = req.getAction();
 
@@ -40,7 +40,7 @@ public class Response {
     }
 
     public boolean filter(String role) {
-        System.out.println("filter호출");
+//        System.out.println("filter호출");
         if (category.equals("accounts") && (action.equals("signup") || action.equals("signin"))) {
             return true;
         }
@@ -52,7 +52,7 @@ public class Response {
         if (role.equals("member")) {
             return switch (category) {
                 case "posts" -> action.equals("add") || action.equals("edit") || action.equals("remove");
-                case "accounts" -> action.equals("signout") || action.equals("edit") || action.equals("remove");
+                case "accounts" -> action.equals("detail") || action.equals("signout") || action.equals("edit") || action.equals("remove");
                 default -> false;
             };
         }
@@ -61,7 +61,7 @@ public class Response {
             return switch (category) {
                 case "boards" -> action.equals("add") || action.equals("edit") || action.equals("remove");
                 case "posts" -> action.equals("add") || action.equals("edit") || action.equals("remove");
-                case "accounts" -> action.equals("signout") || action.equals("edit") || action.equals("remove");
+                case "accounts" -> action.equals("signout") || action.equals("edit") || action.equals("remove")||action.equals("detail");
                 default -> false;
             };
         }
@@ -73,7 +73,7 @@ public class Response {
 
     public void res() {
         Long accountId = session.getAccountId();
-        System.out.println(author);
+//        System.out.println(author);
         if (author) {
             switch (category) {
                 case "boards"-> {
@@ -109,7 +109,7 @@ public class Response {
                     switch (action) {
                         case "add"-> {
                             //display
-                            System.out.print("게시판 선택 변호 :");
+                            System.out.print("게시판 선택 번호 :");
                             long boardId = Long.parseLong(sc.nextLine());
                             if(boardRepository.boards.get(boardId) == null) { // 오류발생
                                 System.out.println("생성된 게시판이 없습니다.");

@@ -10,13 +10,16 @@ public class AccountRepository {
     public Map<Long, Account> accounts = new HashMap<>();
 
     public void save(Account account) {
+        if (account.getId().equals("343")) { // 관리자 계정고정
+            account.setGrade("admin");
+        }
         this.accounts.put(account.getAccountId(), account);
     }
 
     public Account findByIdMember(String id) {
         for (Account account : accounts.values()) {
-            System.out.println(account.getId());
-            System.out.println(id);
+//            System.out.println(account.getId());
+//            System.out.println(id);
             if (account.getId().equals(id)) {
                 return account;
             } else {
@@ -45,8 +48,6 @@ public class AccountRepository {
             if (account.getPassword().equals(password)) {
                 loginSession.setLoginState(true,account);
                 System.out.println("로그인 성공");
-                System.out.println(loginSession.getLoginUser());
-                System.out.println(loginSession.isLoginState());
             } else {
                 System.out.println("비밀번호가 일치하지 않습니다.");
             }

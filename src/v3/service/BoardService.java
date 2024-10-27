@@ -21,7 +21,7 @@ public class BoardService {
     String boardName;
 
     public void add() {
-        System.out.println("Board.add를 호출합니다.");
+//        System.out.println("Board.add를 호출합니다.");
         System.out.print("board 제목 : ");
         boardName = scanner.nextLine();// 제목설정
         Board board = new Board(boardName);
@@ -29,22 +29,36 @@ public class BoardService {
     }
 
     public void edit(long boardId) {
-        System.out.println("Board.edit을 호출합니다.");
-        System.out.print("수정할 board 제목 : ");
-        boardName = scanner.nextLine();
-        Board board = boardRepository.findById(boardId);
-        board.setBoardName(boardName);
+//        System.out.println("Board.edit을 호출합니다.");
+        if(boardRepository.findById(boardId) == null) {
+            System.out.println("수정할 게시물이 없습니다.");
+        } else {
+            System.out.print("수정할 board 제목 : ");
+            boardName = scanner.nextLine();
+            Board board = boardRepository.findById(boardId);
+            board.setBoardName(boardName);
+        }
+
     }
 
     public void remove(long boardId) {
-        System.out.println("Board.remove을 호출합니다.");
-        boardRepository.deleteById(boardId);
+//        System.out.println("Board.remove을 호출합니다.");
+        if(boardRepository.findById(boardId) == null) {
+            System.out.println("수정할 게시물이 없습니다.");
+        } else {
+            boardRepository.deleteById(boardId);
+            for(Post post : postRepository.posts.values()) {
+                if(boardId == post.getBoardId()) {
+                    postRepository.deleteById(post.getPostId());
+                }
+            }
+        }
     }
 
     public void view(String boardName) {
         Board board = boardRepository.findByName(boardName);
         if (board == null) {
-            System.out.println("board 생성된 게시판이 없습니다.");
+            System.out.println("생성된 게시판이 없습니다.");
         } else {
             long boardId;
             boardId = board.getBoardId();
@@ -59,7 +73,7 @@ public class BoardService {
 
     ///////// 추가 메서드
     public void list() {
-        System.out.println("번호/이름/ 게시판에 글 작성여부(나중에구현)");
+        System.out.println("번호/이름");
         for (Board board : boardRepository.boards.values()) {
             System.out.println(board.getBoardId() + "/게시판 이름 :" + board.getBoardName());
         }

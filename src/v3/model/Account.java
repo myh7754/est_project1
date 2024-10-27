@@ -10,7 +10,7 @@ public class Account {
     private String email;
     private String id;
     private String password;
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private String grade;
@@ -33,6 +33,7 @@ public class Account {
         this.email = email;
         this.id = id;
         this.password = password;
+        this.createdAt = LocalDateTime.now();
         this.grade = "member"; // 기본 등급은 member로 시작
     }
 

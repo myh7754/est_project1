@@ -20,7 +20,6 @@ public class BoardRepository {
     public Board findByName(String boardName) {
         for (Board board : boards.values()) {
             if ((board.getBoardName()).equals(boardName)) {
-                System.out.println("board같음실행");
                 return board;
             }
         }

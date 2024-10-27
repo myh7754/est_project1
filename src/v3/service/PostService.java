@@ -18,7 +18,7 @@ public class PostService {
 
 
     public void add(Long boardId) {
-        System.out.println("Post.add를 호출합니다.");
+//        System.out.println("Post.add를 호출합니다.");
         System.out.print("post 제목 : ");
         String title = scanner.nextLine();
         System.out.print("post 내용 : ");
@@ -27,14 +27,21 @@ public class PostService {
         postRepository.save(post);
 
         // posts가 정상적으로 저장되었는지 확인하는 코드 추가
-        System.out.println("현재 저장된 post 목록: " + postRepository.posts);
+        System.out.println("게시글이 저장되었습니다.");
     }
     public void remove(Long postId) {
-        System.out.println("Post.remove를 호출합니다.");
-        postRepository.deleteById(postId);
+//        System.out.println("Post.remove를 호출합니다.");
+        if(postRepository.findByPostId(postId) == null) {
+            System.out.println("생성된 게시물이 없습니다");
+        } else {
+            postRepository.deleteById(postId);
+        }
     }
     public void edit(Long postId) {
-        System.out.println("Post.edit를 호출합니다.");
+//        System.out.println("Post.edit를 호출합니다.");
+        if(postRepository.findByPostId(postId) == null) {
+            System.out.println("생성된 게시물이 없습니다");
+        } else {
         System.out.print("수정할 post 제목 : ");
         String postTitle = scanner.nextLine();
         System.out.print("수정할 post 내용 : ");
@@ -42,17 +49,22 @@ public class PostService {
         postRepository.posts.get(postId).setTitle(postTitle);
         postRepository.posts.get(postId).setContent(postContent);
         postRepository.posts.get(postId).setUpdatedAt(LocalDateTime.now()); // 수정 시간 업데이트
+        }
     }
 
     public void view(Long postId) {
-        System.out.println("Post.view를 호출합니다.");
+//        System.out.println("Post.view를 호출합니다.");
         Post post = postRepository.posts.get(postId);
-        System.out.println("["+post.getPostId()+"]번 게시글");
-        System.out.println("작성일 : "+post.getCreatedAt());
-        System.out.println("수정일 : "+post.getUpdatedAt());
-        System.out.println("게시판  : "+post.getBoardId());
-        System.out.println("제목 : "+post.getTitle());
-        System.out.println("내용 : "+post.getContent());
+        if(post == null) {
+            System.out.println("게시물이 생성되어 있지 않습니다.");
+        } else {
+            System.out.println("["+post.getPostId()+"]번 게시글");
+            System.out.println("작성일 : "+post.getCreatedAt());
+            System.out.println("수정일 : "+post.getUpdatedAt());
+            System.out.println("게시판  : "+post.getBoardId());
+            System.out.println("제목 : "+post.getTitle());
+            System.out.println("내용 : "+post.getContent());
+        }
     }
 
     ////////

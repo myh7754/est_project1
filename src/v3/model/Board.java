@@ -20,7 +20,7 @@ public class Board {
     }
 
     public Board(String boardName) {
-        System.out.println("Board 생성자를 호출합니다.");
+//        System.out.println("Board 생성자를 호출합니다.");
         this.boardName = boardName;
         this.boardId = ++boardIdCounter;
     }

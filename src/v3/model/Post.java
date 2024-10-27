@@ -8,14 +8,14 @@ public class Post {
     private String title;
     private String content;
     private final Long boardId;
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
     private static Long postIdCounter = 0L;
     private LocalDateTime updatedAt;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 
     public Post(String title, String content, Long boardId) {
-        System.out.println("post생성자 호출");
+//        System.out.println("post생성자 호출");
         this.title = title;
         this.content = content;
         this.boardId = boardId;
