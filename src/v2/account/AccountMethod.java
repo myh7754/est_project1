@@ -36,22 +36,31 @@ public class AccountMethod {
         // 로그인 상태라면 로그아웃 상태로 변경
         // 로그인 상태가 아닌데 로그아웃 시도시 오류처리
     }
-    public void detail(String 로그인여부확인) {
+    public void detail(String accountId) {
         System.out.println("Account.detail을 호출합니다.");
         // 로그인 상태확인 -> 참이라면 가입 번호 반환
         long id = 3L; // 반환된 가입 번호
-        System.out.println( id + "번 회원" );
+        System.out.println( "["+id+"]" + "번 회원" );
         // 현재 로그인 되어있는 회원 정보 반환
     }
-    public void edit(String 로그인여부확인) {
+    public void edit(String accountId) {
         System.out.println("Account.edit을 호출합니다.");
         // 로그인 상태 확인
         // 현재 로그인 되어 있는 정보 수정
+        long id = 3L;
+        String memberid = "문영훈";
+        String email = "accountEmail";
+        String day = "2024.10.21";
+        System.out.println( "["+id+"]" + "번 회원" );
+        System.out.println("계정 : "+ memberid);
+        System.out.println("이메일 : "+ email);
+        System.out.println("가입일 : "+ day);
     }
 
-    public void remove(String 로그인여부확인) {
+    public void remove(String accountId) {
         System.out.println("Account.remove을 호출합니다.");
         // 로그인 상태 확인
         // 현재 로그인 되어 있는 정보 삭제
+
     }
 }

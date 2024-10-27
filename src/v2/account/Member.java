@@ -73,5 +73,4 @@ public class Member {
         Grade = grade;
     }
 
-
 }

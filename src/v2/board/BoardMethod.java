@@ -18,25 +18,19 @@ public class BoardMethod{
         boardRepository.save(board);
     }
 
-    public void edit() {
+    public void edit(long boardId) {
         System.out.println("Board.edit을 호출합니다.");
-        System.out.print("수정할 board 번호 : ");
-        long boardId = Long.parseLong(scanner.nextLine());
         System.out.print("수정할 board 제목 : ");
         boardName = scanner.nextLine();
         boardRepository.boards.get(boardId).setBoardName(boardName);
 
     }
-    public void remove() {
+    public void remove(Long boardId) {
         System.out.println("Board.remove을 호출합니다.");
-        System.out.print("삭제할 board 번호 : ");
-        long boardId = Long.parseLong(scanner.nextLine());
         boardRepository.boards.remove(boardId);
     }
-    public void view() { // 수정해야함 글로
+    public void view(String boardName) { // 수정해야함 글로
         System.out.println("Board.view을 호출합니다.");
-        System.out.print("어떤 게시판을 조회하겠습니까? : ");
-        long boardId = Long.parseLong(scanner.nextLine());
-        System.out.println(boardRepository.boards.get(boardId).getBoardName());
+//        System.out.println(boardRepository.boards.get(boardId).getBoardName());
     }
 }
