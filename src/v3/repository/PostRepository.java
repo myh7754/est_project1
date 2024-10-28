@@ -20,11 +20,14 @@ public class PostRepository {
     }
 
 
-    public Post findByBoardId(Long boardId) {
-        System.out.println("findByBoardId 호출");
-        System.out.println("현재 posts 내용: " + posts);
-
-        return null;
+    public int findByBoardIdCount(Long boardId) {
+        int count = 0;
+        for (Post post : posts.values()) {
+            if (post.getBoardId().equals(boardId)) {
+                count++;
+            }
+        }
+        return count;
     }
 
 
