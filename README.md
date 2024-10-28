@@ -20,6 +20,7 @@ java를 이용해 사용자로 부터 url을 입력 받아 게시물의 기능�
 | posts | /posts/remove  | 게시글 삭제  | 회원 |
 | posts | /posts/edit  | 게시글 수정  | 회원 |
 | posts | /posts/view  | 게시글 조회  | 익명 |
+| posts | /posts/list  | 게시글 목록 조회  | 익명 |
 
 accounts/signup/아이디 중복검사  
 boards/remove/ 게시판 삭제시 해당 게시판에 적혀있는 posts 글들도 모두 삭제  
