@@ -73,9 +73,14 @@ public class BoardService {
 
     ///////// 추가 메서드
     public void list() {
-        System.out.println("번호/이름");
-        for (Board board : boardRepository.boards.values()) {
-            System.out.println(board.getBoardId() + "/게시판 이름 :" + board.getBoardName());
+        if (boardRepository.boards.isEmpty()) {
+            System.out.println("생성된 게시판이 없습니다.");
+        } else {
+            System.out.println("번호/이름");
+            for (Board board : boardRepository.boards.values()) {
+                System.out.println(board.getBoardId() + "/게시판 이름 :" + board.getBoardName());
+            }
         }
+
     }
 }

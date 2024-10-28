@@ -21,15 +21,11 @@ public class Session {
         return accountId;
     }
 
-    public void display(String loginUser) {
-        System.out.print(loginUser + "> ");
-    }
-
-    public void setLoginState(boolean loginState) {
+    public void setLoginState(boolean loginState) { // login상태가 false일 때
         this.loginState = loginState;
         this.loginUser = "guest";
     }
-    public void setLoginState(boolean loginState, Account account) {
+    public void setLoginState(boolean loginState, Account account) { //login 상태가 true일 때
         if (loginState) {
             this.loginState = true;
             if(account.getGrade().equals("member")) {

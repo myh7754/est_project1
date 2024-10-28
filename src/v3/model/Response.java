@@ -34,17 +34,17 @@ public class Response {
        this.accountService = accountService;
        this.boardRepository = boardRepository;
 
-       role = session.getLoginUser();
+       role = session.getLoginUser(); // guest , member , admin
        this.author = filter(role);
        res();
     }
 
     public boolean filter(String role) {
 //        System.out.println("filter호출");
-        if (category.equals("accounts") && (action.equals("signup") || action.equals("signin"))) {
+        if (category.equals("accounts") && (action.equals("signup") || action.equals("signin"))) { //guest
             return true;
         }
-        if((category.equals("boards") || category.equals("posts")) && (action.equals("view") || action.equals("list"))) {
+        if((category.equals("boards") || category.equals("posts")) && (action.equals("view") || action.equals("list"))) { //guest
             return true;
         }
 
@@ -66,6 +66,7 @@ public class Response {
             };
         }
         // 그 외
+
         return false;
     }
 
@@ -74,6 +75,7 @@ public class Response {
     public void res() {
         Long accountId = session.getAccountId();
 //        System.out.println(author);
+
         if (author) {
             switch (category) {
                 case "boards"-> {

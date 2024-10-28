@@ -19,21 +19,25 @@ public class AccountService {
 
     public void singup() {
 //        System.out.println("Account.signup을 호출합니다");
-        System.out.print("회원 가입할 아이디를 입력하세요 :"); // 중복검사 나중에 구현
+        System.out.print("회원 가입할 아이디를 입력하세요 :");
         String id = scanner.nextLine();
+        if (accountRepository.findByIdMember(id) != null) { // 중복검사
+            System.out.println("중복된 아이디 입니다.");
+            return;
+        }
         System.out.print("회원 가입할 비밀번호를 입력하세요 : ");
         String password = scanner.nextLine();
         System.out.print("회원 가입할 이름를 입력하세요 : "); // 중복검사 나중에 구현
         String name = scanner.nextLine();
-        System.out.print("회원 가입할 이메일를 입력하세요 : "); // 이메일 형식 검사 나중에 구현
+        System.out.print("회원 가입할 이메일을 입력하세요 :");
         String email = scanner.nextLine();
-
-        if(accountRepository.findByIdMember(id) != null) {
-            System.out.println("중복된 아이디 입니다.");
-        } else {
-            Account account = new Account(id, password, name, email);
-            accountRepository.save(account);
+        if (!isValidEmail(email)) { // 이메일 형식 검사
+            System.out.println("잘못된 이메일 형식입니다.");
+            return;
         }
+
+        Account account = new Account(id, password, name, email);
+        accountRepository.save(account);
 
 
     }
@@ -77,7 +81,13 @@ public class AccountService {
 //        System.out.println("Account.edit 호출합니다.");
         Account account = accountRepository.findByIdMember(accountId);
         System.out.print("이메일 변경: ");
-        account.setEmail(scanner.nextLine());
+        String email = scanner.nextLine();
+        if (!isValidEmail(email)) { // 이메일 형식 검사
+            System.out.println("잘못된 이메일 형식입니다.");
+            return;
+        } else {
+            account.setEmail(email);
+        }
         System.out.print("비밀번호 변경 :");
         account.setPassword(scanner.nextLine());
     }
@@ -87,5 +97,12 @@ public class AccountService {
         accountRepository.accounts.remove(accountId);
         System.out.println("계정이 삭제되었습니다. 로그아웃 합니다.");
         signOut();
+    }
+
+    // 이메일 형식 검사를 위한 메서드
+    private boolean isValidEmail(String email) {
+        // 이메일 형식 정규 표현식
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+        return email.matches(emailRegex);
     }
 }

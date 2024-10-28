@@ -16,7 +16,10 @@ public class Main{
             url = sc.nextLine();
             try {
                 if (!url.startsWith("/")) {
-                    throw new Exception("잘못된 URL 형식입니다. URL은 '/'로 시작해야 합니다.");
+                    System.out.println("잘못된 URL 형식입니다. URL은 '/'로 시작해야 합니다.");
+                }
+                else if (!(url.startsWith("/accounts") || url.startsWith("/posts") || url.startsWith("/boards"))) {
+                    throw new Exception("잘못된 명령어 입니다.");
                 }
                 container.ReqRes(url); // URL 처리
             } catch (Exception e) {

@@ -19,6 +19,13 @@ public class Request {
     private boolean author;
 
 
+    public Request(String url, Session session) throws Exception {
+        this.url = url;
+        this.session = session;
+        this.param = new HashMap<>();
+        urlParse(url);
+    }
+
     public Session getSession() {
         return session;
     }
@@ -28,11 +35,11 @@ public class Request {
     }
 
     public String getCategory() throws Exception {
-        if (Objects.equals(category, "accounts") || Objects.equals(category, "posts") || Objects.equals(category, "boards")) {
+//        if (Objects.equals(category, "accounts") || Objects.equals(category, "posts") || Objects.equals(category, "boards")) {
             return category;
-        } else {
-            throw new Exception("잘못된 카테고리를 입력 했습니다.");
-        }
+//        } else {
+//            throw new Exception("잘못된 카테고리를 입력 했습니다.");
+//        }
     }
 
     public String getAction() throws Exception {
@@ -51,13 +58,6 @@ public class Request {
         return parse;
     }
 
-
-    public Request(String url, Session session) throws Exception {
-        this.url = url;
-        this.session = session;
-        this.param = new HashMap<>();
-        urlParse(url);
-    }
 
 
     public void urlParse(String url) throws Exception {
