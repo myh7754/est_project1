@@ -22,7 +22,8 @@ java를 이용해 사용자로 부터 url을 입력 받아 게시물의 기능�
 | posts | /posts/view  | 게시글 조회  | 익명 |
 | posts | /posts/list  | 게시글 목록 조회  | 익명 |
 
-accounts/signup/아이디 중복검사  
+accounts/signup/아이디 중복검사  , 이메일 형식검사
+accounts/signin/ 로그인상태에서 로그인시 오류
 boards/remove/ 게시판 삭제시 해당 게시판에 적혀있는 posts 글들도 모두 삭제  
 boards/list/ 생성되어 있는 모든 게시판 출력, 게시판에 작성된 글 수 표시
 
