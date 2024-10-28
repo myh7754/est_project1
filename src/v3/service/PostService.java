@@ -68,10 +68,14 @@ public class PostService {
     }
 
     ////////
-    public void list() {
+    public void list() { // 생성되어있는 모든 게시물을 조회
         System.out.println("글 번호/ 글 제목/ 작성일");
         for (Post post : postRepository.posts.values()) {
-            System.out.println(post.getPostId()+"/"+post.getTitle()+"/"+post.getCreatedAt());
+            if(post == null) {
+                System.out.println("생성된 게시글이 없습니다.");
+            } else {
+                System.out.println(post.getPostId()+"/"+post.getTitle()+"/"+post.getCreatedAt());
+            }
         }
     }
 
