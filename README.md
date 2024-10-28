@@ -59,15 +59,16 @@ boards/list/ 생성되어 있는 모든 게시판 출력, 게시판에 작성된
    ```
 위 조건식에서 항상 true가 발생한걸 발견한 후 Short-Circuit 때문에 앞 조건이 참이면 뒤에 조건을 무시하고 항상 true가 발생되는 것을 발견
 3. 해당 if문을 나눠 Short-circuit이 발생하지 않도록 각각의 조건으로 나눔
-4. ```
+4.
+```
 if (category.equals("accounts") && (action.equals("signup") || action.equals("signin"))) {
             return true;
         }
         if((category.equals("boards") || category.equals("posts")) && (action.equals("view") || action.equals("list"))) {
             return true;
         }
-        ```
-   다음과 같이 if문을 끊어서 각각의 조건에 따라 true가 발생되도록 변경
+```
+다음과 같이 if문을 끊어서 각각의 조건에 따라 true가 발생되도록 변경
 5. if문의 복잡한 조건을 사용할 때는 항상 조심해서 끊어서 사용해야 하는 것을 느끼게 되었습니다.
 ---
 느낀점 : 이렇게 객체를 묶어서 구현하면 안된다는걸 알면서도 어떤식으로 쪼개야할지 감이 잘 안왔던 것 같다. 예외처리 또한 나중에 한번에 구현하려고 하니 문제가 많았다... 아쉽게 구현하지 못한 부분도 많고 java를 이용해서 구현하는 여러 방식을 고민해볼 수 있는 시간이었다.
